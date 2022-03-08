@@ -1,0 +1,1 @@
+<!--The layout of this component is dependent on how we want the password recovery process to take place-->
