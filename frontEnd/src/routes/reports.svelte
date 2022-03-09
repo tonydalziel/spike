@@ -2,8 +2,6 @@
     import {tempReports} from '../stores/reportStore';
     import ReportCard from '../components/report.svelte';
     //Should return a list from a store of all the reports currently on the server to then render to the events page
-    //Make further calls when required
-    //Add a search bar to this function
     let displayedReports = $tempReports;
     let search;
     $: {

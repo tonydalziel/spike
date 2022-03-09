@@ -71,10 +71,5 @@
             Register an account
           </button>
         </div>
-        <!-- <div class="flex items-center justify-center">
-            <a class="font-bold text-sm text-blue hover:text-blue-darker" href="/">
-                Register an account
-            </a>
-        </div> -->
     </div>
 </div>

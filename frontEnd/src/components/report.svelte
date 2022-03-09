@@ -10,8 +10,13 @@
     $: hue = (1-severity) * (120);
      'hsl(' + hue + ', 100%, 50%)';
     if(photoID){
-        //Need a way to securely use the API key rather than having written in the source code
-        imageURL = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photo_reference='+photoID+'&key='+placesKey;
+        if(photoID == "Default"){
+            imageURL = 'https://images.unsplash.com/photo-1633432111221-8b25d9c73c42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2128&q=80';
+        }else{
+            imageURL = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photo_reference='+photoID+'&key='+placesKey;
+        }
+    }else{
+        imageURL = 'https://images.unsplash.com/photo-1633432111221-8b25d9c73c42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2128&q=80';
     }
 
 </script>

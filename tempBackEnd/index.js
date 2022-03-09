@@ -25,6 +25,7 @@ reportsInfo = [
  {
     "id":"ChIJhUa_THx9fkgRY_M770E3xAc",
     "reports": 43,
+    "photoID":"Default",
     "lastReport": "01:20:12",
     "severity": 0.69,
     "name":"New Durham & District Workmens Club",

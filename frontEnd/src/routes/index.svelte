@@ -21,6 +21,7 @@ Currently just using it as the login page though -->
   if($user !== null && $user !== "null"){
     openReports()
   }
+
 </script>
 
 {#if registered}
