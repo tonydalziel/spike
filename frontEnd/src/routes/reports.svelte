@@ -1,25 +1,33 @@
 <script>
-    import {tempReports} from '../stores/reportStore';
-    import ReportCard from '../components/report.svelte';
+    import GridReports from '../components/gridReports.svelte';
+    import {onMount} from 'svelte';
+    import MapView from '../components/mapView.svelte';
     //Should return a list from a store of all the reports currently on the server to then render to the events page
-    let displayedReports = $tempReports;
-    let search;
-    $: {
-        if(search && search != ""){
-            displayedReports = $tempReports.filter(element => element.name.toUpperCase().includes(search.toUpperCase()));
-        }else{
-            displayedReports = $tempReports;
+    let mapReady;
+    onMount(()=>{
+        window.initMap = function ready() {
+            mapReady = true;
         }
-    }
+    });
+    
+    let search;
+    let mapView = false;
 </script>
 
-<!--Would like to sort the reports cards out based on severity-->
-<div class="flex justify-center">
+<div class="flex justify-around mx-12 md:w-1/2 md:mx-auto">
     <input bind:value={search} class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" placeholder="Search">
+    <button on:click={()=> mapView = !mapView} class="rounded-full px-5 border-2 {mapView?'bg-teal-700 text-white':'bg-white text-black'} border-teal-700">
+        {#if mapView}
+            Grid View
+            
+        {:else}
+            Map View
+        {/if}
+    </button>
 </div>
-<div class="py-4 w-4/5 mx-auto grid gap-4 md:grid-cols-2 grid-cols-1">
-    {#each displayedReports as report}
-        <!--Could be made more efficient by altering the tempReports object-->
-        <ReportCard reports={report.reports} name={report.name} lastReport={report.lastReport} severity={report.severity} photoID={report.photoID}></ReportCard>
-    {/each}
-</div>
+{#if mapView}
+    <MapView ready={mapReady}></MapView>
+    <!-- <MapReports ></MapReports> -->
+{:else}
+    <GridReports {search}></GridReports>
+{/if}
