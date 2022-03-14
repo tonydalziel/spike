@@ -1,12 +1,15 @@
 <script>
 	import Map from './Map.svelte';
+	import { placesKey } from '../stores/apiKey';
 	export let ready = false;
 </script>
 
 <svelte:head>
-	<script defer async
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtWIpiuuBPIArwGIgdwI6kCFH5xr18K1w&callback=initMap&libraries=visualization">
-	</script>
+	{#if !ready}
+		<script defer async
+		src= "https://maps.googleapis.com/maps/api/js?key={placesKey}&callback=initMap&libraries=visualization">
+		</script>
+	{/if}
 </svelte:head>
 
 { #if ready }
