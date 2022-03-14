@@ -1,5 +1,4 @@
 <script>
-    //TODO: Ensure only neccessary imports are made
     import { placesKey } from '../stores/apiKey';
     export let reports;
     export let name;
