@@ -4,16 +4,16 @@ class AreaModel(db.Model):
 
     __tablename__ = 'areas'
 
-    id = db.Column(db.Integer, primay_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
 
-    reports = db.relationship('ItemModel',lazy='dynamic')
+    venues = db.relationship('VenueModel',lazy='dynamic')
 
     def __init__(self,name):
         self.name = name
     
     def json(self):
-        return {'name': self.name, 'reports': [report.json() for report in self.reports.all()]}
+        return {'area': self.name, 'venues': [venue.json() for venue in self.venues.all()]}
     
     @classmethod
     def find_by_name(cls,name):
