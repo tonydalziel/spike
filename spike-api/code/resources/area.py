@@ -3,17 +3,6 @@ from models.area import AreaModel
 
 
 class Area(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument('name',
-        type=str,
-        required=True,
-        help="Every area needs a valid name"
-    )
-    parser.add_argument('id',
-        type=int,
-        required=True,
-        help="Every area needs a valid id"
-    )
 
     def get(self,name):
 
@@ -23,4 +12,16 @@ class Area(Resource):
             return area.json()
         
         return {'message': f"Area not found {area}"},404
+    
+    def post(self,name):
+
+        if AreaModel.find_by_name(name):
+            return {"message": "An area with that name already exists"},400
+
+        area = AreaModel(name)
+        area.save_to_db()
+
+        return {"message": "Area created successfully"}, 201
+
+
     

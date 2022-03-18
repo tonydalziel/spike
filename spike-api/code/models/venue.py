@@ -17,12 +17,13 @@ class VenueModel(db.Model):
 
     reports = db.relationship('ReportModel',lazy='dynamic')
 
-    def __init__(self,name,location,photo_id,lng,lat):
+    def __init__(self,name,location,photo_id,lng,lat,area_id):
         self.name = name
         self.location = location
         self.photo_id = photo_id
         self.lng = lng
         self.lat = lat
+        self.area_id = area_id
     
     def json(self):
         return {'name': self.name, 'location': self.location, 'photo_id': self.photo_id,'lng':self.lng,'lat':self.lat,'reports':[report.json() for report in self.reports.all()]}
